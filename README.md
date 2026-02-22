@@ -4,6 +4,11 @@
 
 ---
 
+## Vista Previa del Sistema
+| Login | Panel Principal |
+|-------|----------------|
+| ![Login](wireframes/login.png) | ![Panel](wireframes/empleado_panel.png) |
+
 ## Tabla de Contenidos
 
 - [Descripción del Proyecto](#descripción-del-proyecto)

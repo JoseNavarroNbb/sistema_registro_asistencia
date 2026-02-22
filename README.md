@@ -1,6 +1,6 @@
 # Sistema de registro de asistencia
 
-> **Proyecto educativo ** — Aprende a construir una aplicación real con Laravel 10, Vue 3 y Docker desde cero.
+> **Proyecto educativo** — Aprende a construir una aplicación real con Laravel 10, Vue 3 y Docker desde cero.
 
 ---
 

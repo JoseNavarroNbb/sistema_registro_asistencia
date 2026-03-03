@@ -1,7 +1,7 @@
 # Guía 02 — Crear el proyecto Laravel 10 en Windows
 
 > **Sistema de Registro de Asistencia**  
-> En esta guía vamos a crear el proyecto Laravel 10 directamente en Windows usando el PHP de XAMPP y Node.js. El proyecto corre en tu máquina y se conecta al contenedor MySQL que levantamos en la Guía 01.
+> En esta guía vamos a levantar el proyecto Laravel 10 directamente en Windows usando el PHP de XAMPP y Node.js. El proyecto corre en tu máquina y se conecta al contenedor MySQL que levantamos en la Guía 01.
 
 ---
 
@@ -28,6 +28,7 @@ Antes de continuar verifica que tienes:
 - Composer instalado
 - Node.js instalado
 - El contenedor `mysql-dev` corriendo (Guía 01 completada)
+- Dbeaver isntalado, para administrar la base de datos
 
 ### Verificar las versiones desde la terminal
 
@@ -52,17 +53,20 @@ npm -v
 
 ---
 
-## Paso 1 — Crear el proyecto Laravel 10
+## Paso 1 — Clonar Proyecto
 
 Navega a la carpeta donde quieres guardar tus proyectos y ejecuta:
+
+Por ejemplo:
 
 ```bash
 cd C:\dev\proyectos
 
-composer create-project laravel/laravel:^10.0 sistema-asistencia
+git clone https://github.com/JoseNavarroNbb/sistema_registro_asistencia.git
+
 ```
 
-Esto descarga Laravel 10 y todas sus dependencias. Puede tardar unos minutos dependiendo de tu conexión. Cuando termine, entra a la carpeta del proyecto:
+Esto clonará el proyecto Laravel. Cuando termine, entra a la carpeta del proyecto:
 
 ```bash
 cd sistema-asistencia
@@ -90,14 +94,14 @@ APP_URL=http://localhost:8000
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1      # máquina local, donde está corriendo Docker
 DB_PORT=3307           # Puerto externo del contenedor MySQL
-DB_DATABASE=asistencia_db
-DB_USERNAME=asistencia_user
-DB_PASSWORD=asistencia_pass
+DB_DATABASE= #Nombre de la base de datos
+DB_USERNAME= #Usuario para conectarnos el cual fue creado
+DB_PASSWORD= #Constraseña del usuario que se creo.
 
 VITE_API_URL=http://localhost:8000/api
 ```
 
-> **¿Por qué aquí sí usamos `127.0.0.1` y el puerto `3307`?**  
+> **Aquí sí usamos `127.0.0.1` y el puerto `3307`**  
 > Cuando Laravel corre dentro de Docker se comunica con MySQL por la red interna usando el nombre del contenedor y el puerto `3306`. Pero aquí Laravel corre directamente la máquina Windows, así que tiene que llegar al contenedor por el puerto que Docker expuso hacia afuera, que es el `3307`. El `3306` interno no es accesible desde fuera de Docker.
 
 ---

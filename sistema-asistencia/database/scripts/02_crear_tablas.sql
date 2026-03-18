@@ -17,8 +17,8 @@ CREATE TABLE `usuarios` (
     `apellido` VARCHAR(100) NOT NULL COMMENT 'Apellido(s) del usuario',
     `correo` VARCHAR(150) NOT NULL COMMENT 'Correo electrónico, único y usado para login',
     `contrasena` VARCHAR(255) NOT NULL COMMENT 'Hash de la contraseña (usando Bcrypt de Laravel)',
-    `rol` ENUM('admin', 'empleado') NOT NULL DEFAULT 'empleado' COMMENT 'Rol del usuario: administrador o empleado',
-    `estado` TINYINT(1) NOT NULL DEFAULT 1 COMMENT 'Estado del usuario: 1 = activo, 0 = inactivo',
+    `rol` ENUM('admin', 'empleado') NOT NULL DEFAULT 'empleado' COMMENT 'Rol del User: administrador o empleado',
+    `estado` TINYINT(1) NOT NULL DEFAULT 1 COMMENT 'Estado del User: 1 = activo, 0 = inactivo',
     `created_at` TIMESTAMP NULL DEFAULT NULL COMMENT 'Fecha de creación del registro (Laravel)',
     `updated_at` TIMESTAMP NULL DEFAULT NULL COMMENT 'Fecha de última modificación del registro (Laravel)',
     `deleted_at` TIMESTAMP NULL DEFAULT NULL COMMENT 'Fecha de eliminación lógica (Soft Deletes)',
@@ -81,3 +81,17 @@ CREATE TABLE `asistencias` (
     INDEX `asistencias_id_empleado_foreign_idx` (`id_empleado` ASC) VISIBLE,
     INDEX `asistencias_fecha_index` (`fecha` ASC) COMMENT 'Índice para búsquedas por rango de fechas'
 ) ENGINE = InnoDB COMMENT = 'Registro diario de marcaciones de entrada y salida';
+
+
+-- ========================================================
+-- TABLA: password_reset_tokens
+-- Descripción: Almacena tokens temporales para recuperación
+--              de contraseñas por correo electrónico.
+-- ========================================================
+CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
+    `email` VARCHAR(150) NOT NULL COMMENT 'Correo electrónico del usuario',
+    `token` VARCHAR(255) NOT NULL COMMENT 'Token único para restablecer contraseña',
+    `created_at` TIMESTAMP NULL DEFAULT NULL COMMENT 'Fecha de creación del token',
+    PRIMARY KEY (`email`),
+    INDEX `password_reset_tokens_token_index` (`token`)
+) ENGINE = InnoDB COMMENT = 'Tokens para recuperación de contraseñas';

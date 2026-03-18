@@ -3,9 +3,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Auth\AutenticacionControlador;
-use App\Http\Controllers\Auth\RegistroControlador;
-use App\Http\Controllers\Auth\PasswordControlador;
+use App\Http\Controllers\Auth\AutenticacionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +17,12 @@ use App\Http\Controllers\Auth\PasswordControlador;
      * MÓDULO: Autenticación Pública
      * =========================================================
      */
-    Route::post('/auth/iniciar-sesion', [AutenticacionControlador::class, 'iniciarSesion']);
-    Route::post('/auth/registrar-usuario', [RegistroControlador::class, 'registrar']);
-    Route::post('/auth/recuperar-password', [PasswordControlador::class, 'enviarCorreoRecuperacion']);
-    Route::post('/auth/restablecer-password', [PasswordControlador::class, 'restablecerPassword']);
+    Route::post('/auth/iniciar-sesion', [AutenticacionController::class, 'iniciarSesion']);
+    Route::post('/auth/registrar-usuario', [AutenticacionController::class, 'registrar']);
+    Route::post('/auth/recuperar-password', [AutenticacionController::class, 'enviarCorreoRecuperacion']);
+    Route::post('/auth/restablecer-password', [AutenticacionController::class, 'restablecerPassword']);
     
-    /**
-     * =========================================================
-     * MÓDULO: Consultas Públicas
-     * =========================================================
-     */
-    Route::get('/publico/departamentos', [DepartamentoControlador::class, 'obtenerDepartamentosActivos']);
-    Route::get('/publico/cargos', [CargoControlador::class, 'obtenerCargos']);
+
 
 
 /*

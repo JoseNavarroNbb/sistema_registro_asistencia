@@ -1,19 +1,43 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Auth\AutenticacionControlador;
+use App\Http\Controllers\Auth\RegistroControlador;
+use App\Http\Controllers\Auth\PasswordControlador;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| RUTAS PÚBLICAS
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+| Estas rutas no requieren autenticación
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    /**
+     * =========================================================
+     * MÓDULO: Autenticación Pública
+     * =========================================================
+     */
+    Route::post('/auth/iniciar-sesion', [AutenticacionControlador::class, 'iniciarSesion']);
+    Route::post('/auth/registrar-usuario', [RegistroControlador::class, 'registrar']);
+    Route::post('/auth/recuperar-password', [PasswordControlador::class, 'enviarCorreoRecuperacion']);
+    Route::post('/auth/restablecer-password', [PasswordControlador::class, 'restablecerPassword']);
+    
+    /**
+     * =========================================================
+     * MÓDULO: Consultas Públicas
+     * =========================================================
+     */
+    Route::get('/publico/departamentos', [DepartamentoControlador::class, 'obtenerDepartamentosActivos']);
+    Route::get('/publico/cargos', [CargoControlador::class, 'obtenerCargos']);
+
+
+/*
+|--------------------------------------------------------------------------
+| RUTAS PROTEGIDAS
+|--------------------------------------------------------------------------
+| Todas estas rutas requieren token de autenticación válido
+*/
+Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'v1'], function () {
+    
 });

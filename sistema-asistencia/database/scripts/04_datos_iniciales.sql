@@ -22,16 +22,16 @@ INSERT INTO `departamentos` (`nombre`, `descripcion`, `created_at`, `updated_at`
 --    Contraseña: 'Admin123!' (hash generado con Bcrypt)
 -- ========================================================
 INSERT INTO `usuarios` (`nombre`, `apellido`, `correo`, `contrasena`, `rol`, `estado`, `created_at`, `updated_at`) VALUES
-('Admin', 'Principal', 'admin@sistema.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 1, NOW(), NOW());
+('Admin', 'Principal', 'admin@sistema.com', '$2a$12$Fp.OW4XL6.mMRPEZWZ8DeOPkBXGrhyPwGLCSvTV6SLoaeCs3KktF.', 'admin', 1, NOW(), NOW());
 
 -- ========================================================
 -- 3. Insertar usuario de ejemplo (empleado)
 --    Contraseña: 'Empleado123!'
 -- ========================================================
 INSERT INTO `usuarios` (`nombre`, `apellido`, `correo`, `contrasena`, `rol`, `estado`, `created_at`, `updated_at`) VALUES
-('Juan Carlos', 'Pérez García', 'juan.perez@ejemplo.com', '$2y$10$mQvC7N7Xk9Xh9Qq9Xh9QqOeZ9Xh9Qq9Xh9Qq9Xh9Qq9Xh9Qq9Xh9Q', 'empleado', 1, NOW(), NOW()),
-('María Fernanda', 'López Martínez', 'maria.lopez@ejemplo.com', '$2y$10$mQvC7N7Xk9Xh9Qq9Xh9QqOeZ9Xh9Qq9Xh9Qq9Xh9Qq9Xh9Qq9Xh9Q', 'empleado', 1, NOW(), NOW()),
-('Carlos Alberto', 'Sánchez Ruiz', 'carlos.sanchez@ejemplo.com', '$2y$10$mQvC7N7Xk9Xh9Qq9Xh9QqOeZ9Xh9Qq9Xh9Qq9Xh9Qq9Xh9Qq9Xh9Q', 'empleado', 1, NOW(), NOW());
+('Juan Carlos', 'Pérez García', 'juan.perez@ejemplo.com', '$2a$12$1hVAlrpNdhlynPY0/EJbNOYeUbZvNwtFiGXUJvFbMkp6ZGbjxPFXO', 'empleado', 1, NOW(), NOW()),
+('María Fernanda', 'López Martínez', 'maria.lopez@ejemplo.com', '$2a$12$1hVAlrpNdhlynPY0/EJbNOYeUbZvNwtFiGXUJvFbMkp6ZGbjxPFXO', 'empleado', 1, NOW(), NOW()),
+('Carlos Alberto', 'Sánchez Ruiz', 'carlos.sanchez@ejemplo.com', '$2a$12$1hVAlrpNdhlynPY0/EJbNOYeUbZvNwtFiGXUJvFbMkp6ZGbjxPFXO', 'empleado', 1, NOW(), NOW());
 
 -- ========================================================
 -- 4. Insertar empleados (asociándolos con los usuarios y deptos)

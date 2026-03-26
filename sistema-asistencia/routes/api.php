@@ -31,6 +31,16 @@ use App\Http\Controllers\Auth\AutenticacionController;
 |--------------------------------------------------------------------------
 | Todas estas rutas requieren token de autenticación válido
 */
-Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'v1'], function () {
+Route::group(['middleware' => 'auth:sanctum'], function ($router) {
     
+    // Autenticación Protegida
+    Route::post('/auth/cerrar-sesion', [AutenticacionController::class, 'cerrarSesion']);
+    Route::get('/auth/usuario-autenticado', [AutenticacionController::class, 'usuarioAutenticado']);
+    
+    // CRUD Usuarios
+    Route::get('/usuarios', [AutenticacionController::class, 'obtenerUsuarios']);
+    Route::get('/usuarios/{id}', [AutenticacionController::class, 'obtenerUsuario']);
+    Route::put('/usuarios/{id}', [AutenticacionController::class, 'actualizarUsuario']);
+    Route::delete('/usuarios/{id}', [AutenticacionController::class, 'eliminarUsuario']); 
+
 });

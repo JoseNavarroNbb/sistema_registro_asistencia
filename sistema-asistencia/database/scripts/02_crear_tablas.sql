@@ -95,3 +95,23 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
     PRIMARY KEY (`email`),
     INDEX `password_reset_tokens_token_index` (`token`)
 ) ENGINE = InnoDB COMMENT = 'Tokens para recuperación de contraseñas';
+
+
+
+-- ========================================================
+-- TABLA: personal_access_tokens
+-- Descripción: Almacena los tokens de autenticación de Sanctum
+-- ========================================================
+CREATE TABLE `personal_access_tokens` (
+    `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `tokenable_type` VARCHAR(255) NOT NULL COMMENT 'Tipo de modelo que puede tener tokens (ej. App\Models\User)',
+    `tokenable_id` BIGINT UNSIGNED NOT NULL COMMENT 'ID del modelo asociado',
+    `name` VARCHAR(255) NOT NULL COMMENT 'Nombre del token (ej. auth_token)',
+    `token` VARCHAR(64) NOT NULL UNIQUE COMMENT 'Hash único del token',
+    `abilities` TEXT NULL COMMENT 'Habilidades/permissions del token',
+    `last_used_at` TIMESTAMP NULL COMMENT 'Última fecha de uso',
+    `expires_at` TIMESTAMP NULL COMMENT 'Fecha de expiración',
+    `created_at` TIMESTAMP NULL,
+    `updated_at` TIMESTAMP NULL,
+    INDEX `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`, `tokenable_id`)
+) ENGINE = InnoDB COMMENT = 'Tokens de autenticación personal (Laravel Sanctum)';
